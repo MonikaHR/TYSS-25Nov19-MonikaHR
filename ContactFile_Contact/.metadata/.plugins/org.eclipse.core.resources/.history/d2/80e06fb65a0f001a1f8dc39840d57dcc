@@ -1,0 +1,98 @@
+package com.tyss.mobileapp1;
+
+import java.util.List;
+import java.util.Scanner;
+
+import com.tyss.mobileapp1.dao.MobileDAO;
+import com.tyss.mobileapp1.dto.MobileBean;
+import com.tyss.mobileapp1.util.MobileManager;
+
+public class App {
+	public static void main(String[] args) {
+		System.out.println("press 1 to get all contact data");
+		System.out.println("press 2 to search contact data");
+		System.out.println("press 3 to operate contact");
+
+
+		Scanner scn = new Scanner(System.in);
+		int ch = scn.nextInt();
+
+		switch (ch) {
+		case 1: MobileDAO dao = MobileManager.getMobileDAO();
+		List<MobileBean> result =  dao.getAllContactsData();
+
+		for(MobileBean bean : result) {
+			System.out.println("Name: "+bean.getName());
+			System.out.println("Number: "+bean.getNumber());
+			System.out.println("contactgroup: "+bean.getContact_group());
+		}
+		break;
+
+		case 2: 
+			System.out.println("Enter name to be search");
+			Scanner sc1 = new Scanner(System.in);
+			String name = sc1.nextLine();
+
+			MobileDAO dao1 = MobileManager.getMobileDAO();
+			//		String name = scn.next();
+			MobileBean bean = dao1.searchContactData(name);
+			if (bean  != null){
+				System.out.println("Name: "+bean.getName());
+				System.out.println("Number: "+bean.getNumber());
+				System.out.println("Gender: "+bean.getContact_group());
+				System.out.println("*************************");
+				System.out.println("Press 1 to call");
+				System.out.println("press 2 to send message");
+				System.out.println("press 3 toback to main menu");
+
+				int number = sc1.nextInt();
+				switch (number) {
+				case 1:
+					System.out.println("Calling to**************"+name);
+					break;
+				case 2 :
+					System.out.println("Sending a message to****************"+name);
+					break;
+				case 3 :
+
+					break;
+				}
+
+
+			}else {
+				System.out.println("No Data Found");
+			}
+
+			break;
+
+		case 3 : 
+			System.out.println("press 1 to add contact");
+			System.out.println("press 2 to update contact");
+			System.out.println("press 3 to delete contact");
+			Scanner sc3 = new Scanner(System.in);
+			int n = sc3.nextInt();
+			switch(n) {
+
+			case 1 : 
+				System.out.println("Enter name");
+				String name1 = sc3.next();
+				
+				System.out.println("enter number");
+				int number = sc3.nextInt();
+				
+				System.out.println("enter a group");
+				String contact_group = sc3.next();
+				MobileBean  bean3 = new MobileBean();
+				bean3.setName(name1);
+				bean3.setNumber(number);
+				bean3.setContact_group(contact_group);
+				MobileDAO dao3 = MobileManager.getMobileDAO();
+				int i = dao3.AddContact(bean3);
+				System.out.println(i+"Row added");
+				break;
+			}
+		}
+	}
+
+
+}

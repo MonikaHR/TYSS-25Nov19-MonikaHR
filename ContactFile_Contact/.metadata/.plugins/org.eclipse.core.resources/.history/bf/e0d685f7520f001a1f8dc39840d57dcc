@@ -1,0 +1,47 @@
+package com.tyss.mobileapp1;
+
+import java.util.List;
+import java.util.Scanner;
+
+import com.tyss.mobileapp1.dao.MobileDAO;
+import com.tyss.mobileapp1.dto.MobileBean;
+import com.tyss.mobileapp1.util.MobileManager;
+
+public class App {
+	public static void main(String[] args) {
+		System.out.println("press 1 to get all contact data");
+		System.out.println("press 2 to search contact data");
+
+
+		Scanner scn = new Scanner(System.in);
+		int ch = scn.nextInt();
+
+		switch (ch) {
+		case 1: MobileDAO dao = MobileManager.getMobileDAO();
+		List<MobileBean> result =  dao.getAllContactsData();
+
+		for(MobileBean bean : result) {
+			System.out.println("Name: "+bean.getName());
+			System.out.println("Number: "+bean.getNumber());
+			System.out.println("contactgroup: "+bean.getContact_group());
+		
+		}
+		break;
+		
+		case 2: MobileDAO dao1 = MobileManager.getMobileDAO();
+		String name = scn.next();
+			MobileBean bean = dao1.searchContactData(name);
+		if (bean  != null){
+			System.out.println("Name: "+bean.getName());
+			System.out.println("Number: "+bean.getNumber());
+			System.out.println("Gender: "+bean.getContact_group());
+		}else {
+			System.out.println("No Data Found");
+		}
+		break;
+			
+		}
+	}
+
+
+}

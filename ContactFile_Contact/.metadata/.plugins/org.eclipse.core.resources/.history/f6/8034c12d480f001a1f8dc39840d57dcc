@@ -1,0 +1,16 @@
+package com.tyss.mobileapp1.dao;
+
+public interface MobileDAO {
+public List<MobileBean> getAllContactsData();
+	
+
+//	public EmployeeBean searchEmployeeData(int id);
+//
+//		public int insertEmployeeData(EmployeeBean bean);
+//		
+//		public int updateEmployeeData(EmployeeBean bean);
+//		
+//	    public int deleteEmployeeData(int id);
+//	
+
+}

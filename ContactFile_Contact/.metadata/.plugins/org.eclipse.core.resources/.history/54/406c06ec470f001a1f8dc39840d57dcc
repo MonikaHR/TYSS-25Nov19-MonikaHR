@@ -1,0 +1,5 @@
+package com.tyss.mobileapp1.dao;
+
+public interface MobileDAO {
+
+}

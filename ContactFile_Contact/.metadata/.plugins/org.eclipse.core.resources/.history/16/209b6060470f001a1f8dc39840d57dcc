@@ -1,0 +1,9 @@
+package com.tyss.mobileapp1.dto;
+
+public class MobileBean {
+	private String name;
+	private int number;
+	private String group;
+	
+
+}
